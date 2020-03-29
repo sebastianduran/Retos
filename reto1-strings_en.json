@@ -1,0 +1,26 @@
+{
+  "reto1.title": {
+    "value": "Reto1"
+  },
+  "values": {
+    "value": "Valores"
+  },
+  "pause": {
+    "value": "Pausar"
+  },
+  "pattern.0name.1valueUnitsVelocity": {
+    "value": "{0} m/s"
+  },
+  "rotations": {
+    "value": "Rotaciones"
+  },
+  "go": {
+    "value": "Go!"
+  },
+  "return": {
+    "value": "Return"
+  },
+  "pattern.0valueUnitsN": {
+    "value": "{0}N"
+  }
+}

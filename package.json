@@ -1,0 +1,30 @@
+{
+  "name": "reto1",
+  "version": "1.0.0-dev.0",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phetsims/reto1.git"
+  },
+  "devDependencies": {
+    "grunt": "~1.0.0"
+  },
+  "phet": {
+    "requirejsNamespace": "RETO1",
+    "simulation": true,
+    "runnable": true,
+    "readmeCreatedManually": true,
+    "supportedBrands": [
+      "phet",
+      "adapted-from-phet"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "../chipper/eslint/sim_es6_eslintrc.js"
+  },
+  "dependencies": {
+    "dimension": "^0.1.6",
+    "dot": "^1.1.3",
+    "vector": "0.0.4"
+  }
+}
