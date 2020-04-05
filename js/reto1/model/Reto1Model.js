@@ -14,10 +14,12 @@ import Robot from './Robot.js';
  */
 class Reto1Model {
 
-  
-  constructor( ) {
+    /**
+   * @param {Tandem} tandem
+   */
+  constructor( tandem ) {
     //TODO
-    this.robot = new Robot(new Dimension2(262.5, 199.1), new Vector2(0, 0), 0);
+    this.robot = new Robot(new Dimension2(262.5, 196.8), new Vector2(-400, 0), 0);
   }
 
   /**

@@ -9,7 +9,6 @@ import Screen from '../../../joist/js/Screen.js';
 import reto1 from '../reto1.js';
 import Reto1Model from './model/Reto1Model.js';
 import Reto1ScreenView from './view/Reto1ScreenView.js';
-import Robot from './model/Robot.js';
 
 class Reto1Screen extends Screen {
 
@@ -19,16 +18,14 @@ class Reto1Screen extends Screen {
   constructor( tandem ) {
 
     const options = {
-      backgroundColorProperty: new Property( 'white' ),
+      backgroundColorProperty: new Property( 'red' ),
       tandem: tandem,
-      name: 'Robot'
+      name: 'Reto1'
     };
 
     super(
       () => new Reto1Model( tandem.createTandem( 'model' ) ),
-      model => new Reto1ScreenView( model, tandem.createTandem( 'view' ),  ),
-      
-      options
+      model => new Reto1ScreenView( model, tandem.createTandem( 'view' ),  )
     );
   }
 }

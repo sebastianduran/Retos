@@ -4,11 +4,13 @@
  * @author sebastian
  */
 
+import Bounds2 from '../../../../dot/js/Bounds2.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
 import Reto1Constants from '../../common/Reto1Constants.js';
 import reto1 from '../../reto1.js';
-import RobotNode from 'js/reto1/view/RobotNode.js';
+import RobotNode from './RobotNode.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 
 class Reto1ScreenView extends ScreenView {
@@ -17,7 +19,7 @@ class Reto1ScreenView extends ScreenView {
    * @param {Reto1Model} model
    * @param {Tandem} tandem
    */
-  constructor( model, tandem ) {
+  constructor( model, tandem) {
 
     super( {
       tandem: tandem

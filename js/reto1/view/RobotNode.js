@@ -1,4 +1,4 @@
-// Copyright 2013-2020, University of Colorado Boulder
+  // Copyright 2013-2020, University of Colorado Boulder
 
 /**
  * View for the robot object, which can be dragged to translate.
@@ -31,6 +31,7 @@ class RobotNode extends Node {
       centerY: 0
     } ) );
 
+    
     // Scale it so it matches the model width and height
     const scaleX = modelViewTransform.modelToViewDeltaX( robot.size.width ) / this.width;
     const scaleY = modelViewTransform.modelToViewDeltaY( robot.size.height ) / this.height;
