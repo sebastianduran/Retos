@@ -33,8 +33,8 @@ class RobotNode extends Node {
 
     
     // Scale it so it matches the model width and height
-    const scaleX = modelViewTransform.modelToViewDeltaX( robot.size.width ) / this.width;
-    const scaleY = modelViewTransform.modelToViewDeltaY( robot.size.height ) / this.height;
+    const scaleX = 262.5;
+    const scaleY = 197.8;
     this.scale( scaleX, scaleY );
 
     // Observe changes in model position and update the view.
