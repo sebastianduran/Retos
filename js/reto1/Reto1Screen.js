@@ -17,12 +17,6 @@ class Reto1Screen extends Screen {
    */
   constructor( tandem ) {
 
-    const options = {
-      backgroundColorProperty: new Property( 'red' ),
-      tandem: tandem,
-      name: 'Reto1'
-    };
-
     super(
       () => new Reto1Model( tandem.createTandem( 'model' ) ),
       model => new Reto1ScreenView( model, tandem.createTandem( 'view' ),  )

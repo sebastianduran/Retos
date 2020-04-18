@@ -4,17 +4,25 @@
  * @author sebastian
  */
 
-import Dimension2 from '../../../../dot/js/Dimension2.js';
-import Vector2 from '../../../../dot/js/Vector2.js';
 import reto1 from '../../reto1.js';
 import Robot from './Robot.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
+import StringProperty from '../../../../axon/js/StringProperty.js';
+import Dimension2 from '../../../../dot/js/Dimension2.js';
+import Vector2 from '../../../../dot/js/Vector2.js';
+import RotationsKeypad from './RotationsKeypad.js';
+import Bounds2 from '../../../../dot/js/Bounds2.js';
+import Range from '../../../../dot/js/Range.js';
+import Text from '../../../../scenery/js/nodes/Text.js';
+import AlertDialogModel from './AlertDialogModel.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 
 //constants
-const GAME_LENGTH = 458;
-
+const GAME_LENGTH = 508;
+const initPosY = -30;
+const initPosX = -450;
 /**
  * @constructor
  */
@@ -26,11 +34,11 @@ class Reto1Model {
   constructor( tandem ) {
     
     //TODO
-
     const self = this;
 
-    this.robot = new Robot(tandem.createTandem( 'robot' ));
+    this.robot = new Robot(new Dimension2(262.5, 196,8), new Vector2  (initPosX,initPosY), 0);
 
+    /* == Propiedades del boton gopausebutto ===*/
     this.startedProperty = new BooleanProperty( false, {
       tandem: tandem.createTandem( 'startedProperty' )
     } );
@@ -39,7 +47,11 @@ class Reto1Model {
       tandem: tandem.createTandem( 'runningProperty' )
     });
 
-    this.runningProperty.link( function (running) { if (running) { self.startedProperty.set( true ); }} );
+    this.runningProperty.link( function (running) { 
+      if (running) {
+         self.startedProperty.set( true );
+      }
+    } );
 
     this.timeProperty = new Property( 0, {
       // TODO: Removed this property for phet-io spam
@@ -57,19 +69,21 @@ class Reto1Model {
       units: 'meters/second',
       range: new Range( 0, 6 )
     } );
+
+    // Propiedades del Keypad
+    this.rotationsKeypad = new RotationsKeypad( new Bounds2(0,0,738,450), new Vector2(2 * GAME_LENGTH -100,120) );
+    
+    // Slider de potencia
+    //this.powerSlider = new PowerSlider(0,true);
+    this.powerProperty = new NumberProperty (0);
+    this.enableSliderProperty = new Property (true);
+
+    //dialogo alert
+    this.dialogTooLongProperty = new BooleanProperty(false);
+    this.alertDialogModel = new AlertDialogModel('mensaje inicial');
+    
   }
 
-  /**
-   * Update the velocity and position of the robot.
-   *
-   * @private
-   * @param  {number} newV
-   * @param  {number} newX
-   */
-  updateRobot( newV, newX ){
-    this.robot.vProperty.set( newV );
-    this.robot.xProperty.set( newX );
-  }
 
   /**
    * Resets the model.
@@ -79,7 +93,7 @@ class Reto1Model {
     //TODO
     this.robot.reset();
     this.runningProperty.set(false);
-    this.timeProperty.reset();
+    this.enableSliderProperty.set(true);
   }
 
   /**
@@ -87,38 +101,59 @@ class Reto1Model {
    * @param {number} dt - time step, in seconds
    * @public
    */
+  
   step( dt ) {
     //TODO
     if (this.runningProperty.get()){
-      // Increment tug-of-war timer
-      this.durationProperty.set( this.durationProperty.get() + dt );
-
-      const getPower = 2000; //pasar a funcion
-      // Make the simulation run at certain speed
-      const newV = this.robot.vProperty.get() + getPower * dt * 0.003;
-      this.speedProperty.set( Math.abs( newV ) );
-
-      // calculate new position from velocity
-      const newX = this.robot.xProperty.get() + newV * dt * 60.0;
-
-      //If the robot made it to the end, then stop and signify completion
-      const gameLength = GAME_LENGTH - this.robot.widthToWheel;
-      if ( newX > gameLength || newX < -gameLength ) {
-        this.runningProperty.set( false );
-        this.stateProperty.set( 'completed' );
-
-        // zero out the velocity
-        this.speedProperty.set( 0 );
-
-        // set cart and pullers back the to max position
-        const maxLength = newX > gameLength ? gameLength : -gameLength;
-        this.updateRobot( this.speedProperty.get(), maxLength );
+      
+      if ( isNaN(parseFloat( this.rotationsKeypad.decimalText.text)))
+      {
+        this.alertDialogModel.dialogTextProperty.set("vacio");
+        this.runningProperty.set(false);
       }
-      else {
+      else{
+        this.enableSliderProperty.set(false);
+        // Increment tug-of-war timer
+        this.durationProperty.set( this.durationProperty.get() + dt );
+        //posición actual del robot en X
+        const posX = this.robot.positionProperty.value.x;
+        
+        // Slider de potencia
+        var power = this.powerProperty.value.value;
+        if (power === undefined){
+          power = 0;
+        }
+        //Movimiento del robot //
+        this.robot.positionProperty.value = new Vector2( posX + 1 * (power /20), initPosY);
 
-        // if the game isn't over yet, update cart and puller
-        this.updateRobot( newV, newX );
+        // calculo de la posición final calculada con una costante de rotación
+        const constRotacion = 207; // tamaño en pixeles del diametro de la rueda
+        const finalpos = initPosX + (parseFloat(this.rotationsKeypad.decimalText.text)*constRotacion);
+
+        if ( posX >=  finalpos || posX >2000 || posX <-2000 ) {
+          this.runningProperty.set( false );
+          // zero out the velocity
+          this.speedProperty.set( 0 );
+          console.log(posX);
+          if ( posX > 298 && posX < 301){
+            this.alertDialogModel.dialogTextProperty.set("completado");
+          }
+          else if (posX < -2000 || posX > 2000){
+            this.alertDialogModel.dialogTextProperty.set("desbordado");
+          }
+          else {
+            this.alertDialogModel.dialogTextProperty.set("parado");
+          }
+
+          
+
+        }
+
       }
+    }
+    else{
+      this.enableSliderProperty.set(true);
+      this.alertDialogModel.dialogTextProperty.set(" ");
     }
     this.timeProperty.set( this.timeProperty.get() + dt );
   }

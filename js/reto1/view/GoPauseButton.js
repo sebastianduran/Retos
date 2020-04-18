@@ -8,8 +8,6 @@
  */
 
 import DerivedProperty from '../../../../axon/js/DerivedProperty.js';
-import Emitter from '../../../../axon/js/Emitter.js';
-import Property from '../../../../axon/js/Property.js';
 import inherit from '../../../../phet-core/js/inherit.js';
 import merge from '../../../../phet-core/js/merge.js';
 import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
@@ -17,8 +15,6 @@ import Rectangle from '../../../../scenery/js/nodes/Rectangle.js';
 import Text from '../../../../scenery/js/nodes/Text.js';
 import BooleanToggleNode from '../../../../sun/js/BooleanToggleNode.js';
 import RoundPushButton from '../../../../sun/js/buttons/RoundPushButton.js';
-import NumberIO from '../../../../tandem/js/types/NumberIO.js';
-import StringIO from '../../../../tandem/js/types/StringIO.js';
 import reto1 from '../../reto1.js';
 import Reto1Model from '../model/Reto1Model.js';
 
@@ -83,22 +79,14 @@ function GoPauseButton( model, layoutWidth, tandem, options ) {
   } );
 
   // boolean function to determine if the go button should be enabled based on model state.
-  const isGoButtonEnabled = function() {
-    return model.stateProperty.get() !== 'completed' && ( model.numberPullersAttachedProperty.get() > 0 || model.runningProperty.get() );
-  };
+  //const isGoButtonEnabled = function() {
+  //  return model.stateProperty.get() !== 'completed' && ( model.numberPullersAttachedProperty.get() > 0 || model.runningProperty.get() );
+  //};
 
-  // When the go button is pressed, indicate which pullers are on which knots and what the net force is.
-  const goButtonPressedEmitter = new Emitter( {
-    tandem: tandem.createTandem( 'goButtonPressedEmitter' ),
-    parameters: [
-      { name: 'power', phetioType: NumberIO },
-      { name: 'rotations', phetioType: NumberIO }
-    ]
-  } );
   const goListener = function() {
-    goButtonPressedEmitter.emit( 0, 0); //model.netForceProperty.get(), JSON.stringify( model.getKnotDescription() ) );
     model.runningProperty.set( true );
   };
+
   const goButton = new RoundPushButton( {
     content: wrap( goTextNode, padX, padY, [ goTextNode, pauseTextNode ] ),
     baseColor: '#94b830',

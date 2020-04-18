@@ -6,42 +6,33 @@
  *
  * @author sebastian
  */
-
-import Property from '../../../../axon/js/Property.js';
 import reto1 from '../../reto1.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
 import Range from '../../../../dot/js/Range.js';
+import Property from '../../../../axon/js/Property.js';
 
-/**
- * @constructor
- */
 class Robot {
+ /**
+ * Create a new robot model. The robott has fixed size, and mutable position and orientation.
+ *
+ * @param {Dimension2} size - the size of the bar magnet in model coordinates
+ * @param {Vector2} position - the position of the bar magnet in model coordinates
+ * @param {number} orientation - in radians
+ * 
+ */
+  constructor( size, position, orientation) {
 
-  /**
-   * Create a new robot model. The robott has fixed size, and mutable position and orientation.
-   *
-   * @param {Tandem} tandem
-   * 
-   */
+    // @public (read-only) {Dimension2} the size of the bar magnet in model coordinates
+    this.size = size;
 
-  constructor( tandem ) {
+    // @public {Vector2} the position of the bar magnet in model coordinates
+    this.positionProperty = new Property( position );
 
-    // @public {number} - 1-D x location of the cart
-    this.xProperty = new NumberProperty (0, {
-      tandem: tandem.createTandem( 'xProperty' ),
-      units: 'meters',
-      range: new Range( -403, 403 )
-    });
+    // @public {number} in radians
+    this.orientationProperty = new Property( orientation );
 
-    // @public {number} - 1-D velocity in MKS
-    this.vProperty = new NumberProperty( 0, {
-      tandem: tandem.createTandem( 'vProperty' ),
-      units: 'meters/second',
-      range: new Range( -6, 6 )
-    } );
-
+    this.widthToWheel = 132;
   }
-
   /**
    * Restores the initial state of the Robot. This method is called when the simulation "Reset All" button is
    * pressed. Note that Robot.size is constant and does not need to be reset.
@@ -50,10 +41,8 @@ class Robot {
   reset() {
     this.positionProperty.reset();
     this.orientationProperty.reset();
-    this.xProperty.reset();
-    this.vProperty.reset();
   }
 }
 
 reto1.register( 'Robot', Robot );
-export default Robot;
+export default ( Robot );

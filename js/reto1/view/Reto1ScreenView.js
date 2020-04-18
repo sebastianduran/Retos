@@ -3,17 +3,28 @@
 /**
  * @author sebastian
  */
-
-import Bounds2 from '../../../../dot/js/Bounds2.js';
 import GoPauseButton from './GoPauseButton.js'; 
-import grassImage from '../../../images/grass_png.js';
+import fondoImage from '../../../images/fondo_png.js';
+import cloud1Image from '../../../images/cloud1_png.js';
+import mountainsImage from '../../../images/mountains_png.js';
+import aparcamientoImage from '../../../images/aparcamiento_png.js';
+import reto1 from '../../reto1.js';
 import ModelViewTransform2 from '../../../../phetcommon/js/view/ModelViewTransform2.js';
 import ResetAllButton from '../../../../scenery-phet/js/buttons/ResetAllButton.js';
-import Reto1Constants from '../../common/Reto1Constants.js';
-import reto1 from '../../reto1.js';
+import Reto1Constants from '../common/Reto1Constants.js';
 import RobotNode from './RobotNode.js';
 import ScreenView from '../../../../joist/js/ScreenView.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
+import Image from '../../../../scenery/js/nodes/Image.js';
+import RotationsKeypadNode from './RotationsKeypadNode.js';
+import Panel from '../../../../sun/js/Panel.js';
+import VBox from '../../../../scenery/js/nodes/VBox.js';
+import RotationsPanel from './RotationsPanel.js';
+import FlexometroNode from './FlexometroNode.js';
+import PowerDisplayNumberNode from './PowerDisplayNumberNode.js';
+import Range from '../../../../dot/js/Range.js';
+import AlertDialogNode from './AlertDialogNode.js';
+import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 
 class Reto1ScreenView extends ScreenView {
 
@@ -23,39 +34,48 @@ class Reto1ScreenView extends ScreenView {
    */
   constructor( model, tandem) {
 
-    super( {
-      tandem: tandem
-    } );
-
+    super( );//{
+      //tandem: tandem,
+      //layoutBounds: new Bounds2( 0, 0, 768, 504 )
+    //} );
     const center = new Vector2( this.layoutBounds.width / 2, this.layoutBounds.height / 2 );
-    const modelViewTransform = ModelViewTransform2.createOffsetScaleMapping( center, 1 );
-    
-    //Create the sky and ground.  Allow the sky and ground to go off the screen in case the window is larger than the sim aspect ratio
-    const skyHeight = 376;
-    const grassY = 368;
-    const groundHeight = grassY - skyHeight;
+    const modelViewTransform = ModelViewTransform2.createOffsetScaleMapping( center, 1 );    
+  
+    this.addChild( new Image( fondoImage, {
+      center: center,
+      scale: 1.4
+    } ) );
+
+    this.addChild( new Image( mountainsImage, {
+      center: new Vector2 (500,380),
+      scale: 3
+    } ) );
+
+    this.addChild( new Image( cloud1Image, {
+      center: new Vector2 (600,80),
+      scale: 0.5
+    } ) );
+
+    //Show the regla.
+    this.addChild( new Image( aparcamientoImage, {
+      centerX: this.layoutBounds.maxX /2 ,
+      centerY: 385,
+      scale: 2.4
+    } ) );
 
     const resetAllButton = new ResetAllButton( {
       listener: () => {
         this.interruptSubtreeInput(); // cancel interactions that may be in progress
         model.reset();
-        this.reset();
       },
       right: this.layoutBounds.maxX - Reto1Constants.SCREEN_VIEW_X_MARGIN,
       bottom: this.layoutBounds.maxY - Reto1Constants.SCREEN_VIEW_Y_MARGIN,
       tandem: tandem.createTandem( 'resetAllButton' )
     } );
     
+    this.addChild( resetAllButton );
 
-    this.addChild(new RobotNode(model.robot, modelViewTransform));
-
-    //Show the grass.
-    /*this.addChild( new Image( grassImage, {
-      tandem: tandem.createTandem( 'grassImage1' ),
-      x: 13,
-      y: grassY
-    } ) );*/
-
+    
     //Add the go button, but only if there is a puller attached
     // i18n - ensure that the go, pause, and return buttons will fit in between the puller toolboxes
     const maxWidth = 800;
@@ -65,24 +85,33 @@ class Reto1ScreenView extends ScreenView {
     } );
     this.addChild( goPauseButton );
 
-    this.addChild( resetAllButton );
-  }
+    this.robotNode = new RobotNode(model.robot, modelViewTransform );
+    this.addChild(this.robotNode);
 
-  /**
-   * Resets the view.
-   * @public
-   */
-  reset() {
-    //TODO
-  }
+    /*====== PANEL MOTOR ======*/
+    const panelVector = new Vector2 (280,85);
+    
+    //slider de potencia
+    const powerSlider = new PowerDisplayNumberNode(model, new Range(-100,100));
 
-  /**
-   * Steps the view.
-   * @param {number} dt - time step, in seconds
-   * @public
-   */
-  step( dt ) {
-    //TODO
+    const rotationsPanel = new RotationsPanel(model);
+
+
+    this.addChild(
+              new Panel ( new VBox ( {
+                              spacing: 10,
+                              children: [rotationsPanel, powerSlider ]}),{
+                center: panelVector}       
+          ) );
+    //Cinta de medida del scenary-phet
+    this.addChild( new FlexometroNode(this.layoutBounds));
+
+    // Creates for NumberKeypad
+    this.rotationsKeypadNode = new RotationsKeypadNode (model, panelVector, this);
+    //this.addChild( this.rotationsKeypadNode);
+
+    this.dialogNode = new AlertDialogNode(model, new Text('',{font: new PhetFont(20)}), this);
+
   }
 }
 

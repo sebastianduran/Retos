@@ -6,7 +6,7 @@
  * @author sebastian
  */
 
-import reto1 from '../reto1.js';
+import reto1 from '../../reto1.js';
 
 const Reto1Constants = {
 
@@ -15,6 +15,7 @@ const Reto1Constants = {
 
   //TODO
 };
+
 
 reto1.register( 'Reto1Constants', Reto1Constants );
 export default Reto1Constants;
