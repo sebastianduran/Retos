@@ -1,10 +1,14 @@
+// Copyright 2013-2020, University of Colorado Boulder
+
+/** View for the robot object, which can be dragged to translate.
+ *
+ * @author Sebastian Duran
+ * 
+ */
 
 import reto1 from '../../reto1.js';
-import NumberDisplay from '../../../../scenery-phet/js/NumberDisplay.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import Range from '../../../../dot/js/Range.js';
 import Property from '../../../../axon/js/Property.js';
-import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 
 class PowerSlider {
 

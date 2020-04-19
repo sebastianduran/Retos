@@ -128,5 +128,5 @@ export default reto1Common.register( 'Reto1CommonConstants', {
   // @public {AlignGroup} - Used to properly horizontally align all of the panels/accordions/etc. across screens.
   panelAlignGroup: new AlignGroup( {
     matchVertical: false
-  } ),
+  } )
 } );

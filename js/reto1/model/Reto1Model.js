@@ -9,15 +9,12 @@ import Robot from './Robot.js';
 import BooleanProperty from '../../../../axon/js/BooleanProperty.js';
 import Property from '../../../../axon/js/Property.js';
 import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import StringProperty from '../../../../axon/js/StringProperty.js';
 import Dimension2 from '../../../../dot/js/Dimension2.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
 import RotationsKeypad from './RotationsKeypad.js';
 import Bounds2 from '../../../../dot/js/Bounds2.js';
 import Range from '../../../../dot/js/Range.js';
-import Text from '../../../../scenery/js/nodes/Text.js';
 import AlertDialogModel from './AlertDialogModel.js';
-import PhetFont from '../../../../scenery-phet/js/PhetFont.js';
 
 //constants
 const GAME_LENGTH = 508;
@@ -47,7 +44,7 @@ class Reto1Model {
       tandem: tandem.createTandem( 'runningProperty' )
     });
 
-    this.runningProperty.link( function (running) { 
+    this.runningProperty.link(function(running){
       if (running) {
          self.startedProperty.set( true );
       }
@@ -108,7 +105,7 @@ class Reto1Model {
       
       if ( isNaN(parseFloat( this.rotationsKeypad.decimalText.text)))
       {
-        this.alertDialogModel.dialogTextProperty.set("vacio");
+        this.alertDialogModel.dialogTextProperty.set('vacio');
         this.runningProperty.set(false);
       }
       else{
@@ -119,7 +116,7 @@ class Reto1Model {
         const posX = this.robot.positionProperty.value.x;
         
         // Slider de potencia
-        var power = this.powerProperty.value.value;
+        let power = this.powerProperty.value.value;
         if (power === undefined){
           power = 0;
         }
@@ -135,14 +132,14 @@ class Reto1Model {
           // zero out the velocity
           this.speedProperty.set( 0 );
           console.log(posX);
-          if ( posX > 298 && posX < 301){
-            this.alertDialogModel.dialogTextProperty.set("completado");
+          if ( posX > 292 && posX < 298){
+            this.alertDialogModel.dialogTextProperty.set('completado');
           }
           else if (posX < -2000 || posX > 2000){
-            this.alertDialogModel.dialogTextProperty.set("desbordado");
+            this.alertDialogModel.dialogTextProperty.set('desbordado');
           }
           else {
-            this.alertDialogModel.dialogTextProperty.set("parado");
+            this.alertDialogModel.dialogTextProperty.set('parado');
           }
 
           
@@ -153,7 +150,7 @@ class Reto1Model {
     }
     else{
       this.enableSliderProperty.set(true);
-      this.alertDialogModel.dialogTextProperty.set(" ");
+      this.alertDialogModel.dialogTextProperty.set(' ');
     }
     this.timeProperty.set( this.timeProperty.get() + dt );
   }

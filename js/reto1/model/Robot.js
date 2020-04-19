@@ -7,8 +7,6 @@
  * @author sebastian
  */
 import reto1 from '../../reto1.js';
-import NumberProperty from '../../../../axon/js/NumberProperty.js';
-import Range from '../../../../dot/js/Range.js';
 import Property from '../../../../axon/js/Property.js';
 
 class Robot {

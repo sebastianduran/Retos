@@ -7,18 +7,16 @@
  */
 
 import Node from '../../../../scenery/js/nodes/Node.js';
-import reto1 from "../../reto1.js";
+import reto1 from '../../reto1.js';
 import HBox from '../../../../scenery/js/nodes/HBox.js';
 import VBox from '../../../../scenery/js/nodes/VBox.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
-import Property from '../../../../axon/js/Property.js';
-
 
 class RotationsKeypadNode extends Node {
 
     /**
-    * @param Reto1 {model} 
-    * @param Vector2 {panelVector} 
+    * @param Reto1 {model}
+    * @param Vector2 {panelVector}
     * @param ScreenView {parent}
     */
     constructor(model, panelVector, parent){
@@ -27,7 +25,7 @@ class RotationsKeypadNode extends Node {
 
           model.rotationsKeypad.decimalKeypad.valueStringProperty.link( function( valueString ) {
             model.rotationsKeypad.decimalText.text = valueString;
-          });          
+          });
 
           const keypad = new HBox( {
             spacing: 20,
@@ -38,10 +36,8 @@ class RotationsKeypadNode extends Node {
                 spacing: 20,
                 children: [ model.rotationsKeypad.decimalKeypad ]
               } )
-              
             ],
             center: new Vector2(panelVector.x + 180, panelVector.y + 10 )
-
           } );
     
           model.rotationsKeypad.showKeypadProperty.link(function(visible){
@@ -51,7 +47,6 @@ class RotationsKeypadNode extends Node {
               parent.removeChild(keypad);
             }
           });
-          
     }
 }
 reto1.register( 'RotationsKeypadNode', RotationsKeypadNode );

@@ -12,7 +12,7 @@ import Tandem from '../../tandem/js/Tandem.js';
 import reto1Strings from './reto1-strings.js';
 import Reto1Screen from './reto1/Reto1Screen.js';
 
-const reto1TitleString = reto1Strings[ 'reto1' ].title;
+const reto1TitleString = reto1Strings.reto1.title;
 
 const simOptions = {
   credits: {

@@ -1,5 +1,4 @@
-  // Copyright 2013-2020, University of Colorado Boulder
-
+// Copyright 2013-2020, University of Colorado Boulder
 /**
  * View for the robot object, which can be dragged to translate.
  *
@@ -10,10 +9,6 @@ import Image from '../../../../scenery/js/nodes/Image.js';
 import Node from '../../../../scenery/js/nodes/Node.js';
 import robotImage from '../../../images/robot_png.js';
 import reto1 from '../../reto1.js';
-import reto1String from '../../reto1-strings.js';
-import DragListener from '../../../../scenery/js/listeners/DragListener.js';
-
-const speedString = reto1String.speed;
 
 class RobotNode extends Node {
 
@@ -32,7 +27,7 @@ class RobotNode extends Node {
     // Add the centered robot image
     this.addChild( new Image( robotImage, {
       centerX: 50,
-      centerY: 280,
+      centerY: 280
     }));
 
     // Scale it so it matches the model width and height

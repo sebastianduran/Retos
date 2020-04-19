@@ -7,7 +7,7 @@
  */
 
 import Node from '../../../../scenery/js/nodes/Node.js';
-import reto1 from "../../reto1.js";
+import reto1 from '../../reto1.js';
 import HBox from '../../../../scenery/js/nodes/HBox.js';
 import Panel from '../../../../sun/js/Panel.js';
 import Vector2 from '../../../../dot/js/Vector2.js';
@@ -57,14 +57,14 @@ class RotationsPanel extends Node {
              new HBox({
                 spacing: 10,
                 align: 'top',
-                children: [ 
+                children: [
                   new Text ( 'Rotaciones', {
-                              font: new PhetFont( 20 )   
+                              font: new PhetFont( 20 )
                             } ),
                   new Panel (model.rotationsKeypad.decimalText ,{
                     minWidth: 50})]
                 //
-              })            
+              })
           );
     }
 

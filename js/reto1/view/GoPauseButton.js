@@ -16,10 +16,9 @@ import Text from '../../../../scenery/js/nodes/Text.js';
 import BooleanToggleNode from '../../../../sun/js/BooleanToggleNode.js';
 import RoundPushButton from '../../../../sun/js/buttons/RoundPushButton.js';
 import reto1 from '../../reto1.js';
-import Reto1Model from '../model/Reto1Model.js';
 
-const goString = "go";
-const pauseString = "pausar";
+const goString = 'GO';
+const pauseString = 'PAUSA';
 
 //Given nodes that have possibly different sizes, wrap the specified node in a parent empty Rectangle node so the bounds will match up
 //If the node is already the largest, don't wrap it.

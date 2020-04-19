@@ -4,7 +4,6 @@
  * @author sebastian
  */
 
-import Property from '../../../axon/js/Property.js';
 import Screen from '../../../joist/js/Screen.js';
 import reto1 from '../reto1.js';
 import Reto1Model from './model/Reto1Model.js';
@@ -19,7 +18,7 @@ class Reto1Screen extends Screen {
 
     super(
       () => new Reto1Model( tandem.createTandem( 'model' ) ),
-      model => new Reto1ScreenView( model, tandem.createTandem( 'view' ),  )
+      model => new Reto1ScreenView( model, tandem.createTandem( 'view' ))
     );
   }
 }
