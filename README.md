@@ -8,7 +8,7 @@ at the University of Colorado Boulder.
 
 ### Sobre esta simulación
 
-Reto1 es una simulacion para estudiandes de basica secundaria donde pueden explorar los concectos de mediciones y las proporsiones directas lineales, así como el concepto de diametro, perimietro y circunferencia.
+Reto1 es una simulacion para estudiandes de basica secundaria donde pueden explorar los concectos de mediciones y las proporciones directas, así como el concepto de circunferencia, díametro y perímietro.
 
 ### Como se utiliza
 
@@ -32,8 +32,9 @@ The <a href="https://github.com/phetsims/phet-info/blob/master/doc/phet-developm
 Development. This guide includes how to obtain simulation code and its dependencies, notes about architecture & design, how to test and build
 the sims, as well as other important information.
 
+### License
+See the <a href="https://github.com/phetsims/reto1/blob/master/LICENSE" target="_blank">LICENSE</a>
 
 ![Alt text](https://i.imgur.com/C6XiWsE.png "Pantalla de la simulación")
 
-### License
-See the <a href="https://github.com/phetsims/reto1/blob/master/LICENSE" target="_blank">LICENSE</a>
+
