@@ -1,5 +1,5 @@
 {
-  "comment": "# reto1 1.0.0-dev.0 Sat Apr 18 2020 19:48:02 GMT-0500 (hora estándar de Colombia)",
+  "comment": "# reto1 1.0.0-dev.0 Sat May 09 2020 15:04:13 GMT-0500 (GMT-05:00)",
   "assert": {
     "sha": "a99a9ce9ee0774bf3ef509bf3e31ca7383f67478",
     "branch": "master"
@@ -45,7 +45,7 @@
     "branch": "master"
   },
   "reto1": {
-    "sha": "d9f78830822b5dd722e2a2013e51d32e574a81d9",
+    "sha": "1cb405622977ac65728bfc015f56993e2d621422",
     "branch": "master"
   },
   "scenery": {

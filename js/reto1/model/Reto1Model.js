@@ -124,7 +124,7 @@ class Reto1Model {
         this.robot.positionProperty.value = new Vector2( posX + 1 * (power /20), initPosY);
 
         // calculo de la posición final calculada con una costante de rotación
-        const constRotacion = 207; // tamaño en pixeles del diametro de la rueda
+        const constRotacion = 216; // tamaño en pixeles del diametro de la rueda
         const finalpos = initPosX + (parseFloat(this.rotationsKeypad.decimalText.text)*constRotacion);
 
         if ( posX >=  finalpos || posX >2000 || posX <-2000 ) {
