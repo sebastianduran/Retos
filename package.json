@@ -7,7 +7,7 @@
     "url": "https://github.com/phetsims/reto1.git"
   },
   "devDependencies": {
-    "grunt": "~1.0.0"
+    "grunt": "~1.5.2"
   },
   "phet": {
     "requirejsNamespace": "RETO1",
